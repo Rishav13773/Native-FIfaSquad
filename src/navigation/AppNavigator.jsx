@@ -1,6 +1,5 @@
 import HomeScreen from '../screens/HomeScreen';
 import { NavigationContainer } from '@react-navigation/native';
-// import HomeScreen from '../screens/HomeScreen';
 import PitchScreen from '../screens/PitchScreen';
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
