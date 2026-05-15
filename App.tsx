@@ -1,45 +1,56 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
-
-import { NewAppScreen } from '@react-native/new-app-screen';
-import { StatusBar, StyleSheet, useColorScheme, View } from 'react-native';
 import {
-  SafeAreaProvider,
-  useSafeAreaInsets,
-} from 'react-native-safe-area-context';
+  ActivityIndicator,
+  StatusBar,
+  StyleSheet,
+  View,
+  useColorScheme,
+} from 'react-native';
+import React, { useEffect } from 'react';
 
-function App() {
-  const isDarkMode = useColorScheme() === 'dark';
+import AppNavigator from './src/navigation/AppNavigator';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
-  return (
-    <SafeAreaProvider>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <AppContent />
-    </SafeAreaProvider>
-  );
-}
+// import { store } from './src/redux/store';
 
 function AppContent() {
-  const safeAreaInsets = useSafeAreaInsets();
+  // const isInitializing = useSelector((state: any) => state.auth.isInitializing);
+
+  const isDarkMode = useColorScheme() === 'dark';
+
+  // useEffect(() => {
+  //   store.dispatch(loadTokensFromStorage());
+  //   SystemNavigationBar.setNavigationColor('transparent'); // use this
+  // }, []);
+
+  // if (isInitializing) {
+  //   return (
+  //     <View style={styles.loader}>
+  //       <ActivityIndicator />
+  //     </View>
+  //   );
+  // }
 
   return (
     <View style={styles.container}>
-      <NewAppScreen
-        templateFileName="App.tsx"
-        safeAreaInsets={safeAreaInsets}
-      />
+      <StatusBar backgroundColor="#fff" barStyle="dark-content" />
+      <AppNavigator />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
+  container: { flex: 1 },
+  loader: {
     flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
 
-export default App;
+export default function App() {
+  return (
+    <SafeAreaProvider>
+      <AppContent />
+    </SafeAreaProvider>
+  );
+}
